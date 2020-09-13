@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
+
 var userSchema = new mongoose.Schema({
     fullName: {
         type: String,
@@ -34,5 +35,6 @@ userSchema.pre('save', function(next) {
         });
     });
 });
+
 
 mongoose.model('User', userSchema);
