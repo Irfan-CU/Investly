@@ -1,0 +1,16 @@
+require("./config/config");
+require("./models/db");
+
+
+var express = require('express');
+var bodyParser = require('body-parser');
+var cors = require('cors');
+var app = express();
+
+
+const rtsIndex = require('./routers/index.router');
+
+app.use(bodyParser.json());
+app.use(cors());
+app.use('/api', rtsIndex);
+app.listen(process.env.PORT, () => console.log('adada'));
