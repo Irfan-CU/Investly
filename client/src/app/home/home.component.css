@@ -180,7 +180,7 @@ body {
     margin-left: 10px;
 }
 
-.add__btn:active {
+.add__btn1:active {
     transform: translateY(2px);
 }
 
@@ -191,7 +191,7 @@ body {
     border: 1px solid #28B9B5;
 }
 
-.add__btn:focus {
+.add__btn1:focus {
     outline: none;
 }
 
