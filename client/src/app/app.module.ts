@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
+import { HttpClientModule} from '@angular/common/http'
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './header/header.component';
 import {UserService} from './user.service';
+import { UserListComponent } from './user-list/user-list.component';
 
 
 
@@ -23,8 +25,8 @@ import {UserService} from './user.service';
     AppComponent,
     HomeComponent,
     UserComponent,
-    
     HeaderComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import {UserService} from './user.service';
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

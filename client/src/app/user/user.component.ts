@@ -1,6 +1,7 @@
 import { Component, OnInit,EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Peer } from './user.model';
+import { Peer } from '../user.model';
+import { UserService } from '../user.service';
 
 
 @Component({
@@ -10,15 +11,13 @@ import { Peer } from './user.model';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
-
-  @Output() peerCreated =new EventEmitter<Peer>();
+  constructor(public peerService:UserService) { }
 
   firstName ='';
   lastName='';
   relation='Father';
   amount='';
- 
+  //peerget:Peer []=[];
   onEnterAmount(form:NgForm)
   {
     if(form.invalid)
@@ -30,7 +29,10 @@ export class UserComponent implements OnInit {
         lastName:form.value.lastName,
         relation:this.relation,
         amount:form.value.amount};
-        this.peerCreated.emit(peer);
+        this.peerService.addPeers(peer);
+        //this.peerget = this.peerService.getPeers();
+        //alert(this.peerget[0].firstName+this.peerget[0].lastName+this.peerget[0].relation+this.peerget[0].amount);
+        form.reset();
 
     }
   
