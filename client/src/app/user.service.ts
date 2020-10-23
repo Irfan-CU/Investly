@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {Subject} from 'rxjs'
 
 import { Peer } from './user.model';
@@ -8,13 +9,22 @@ import { Peer } from './user.model';
 })
 export class UserService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
   private peers: Peer[]=[]; //this will give the reference to array
   private peerUpdated = new Subject<Peer[]>();
 
 
   getPeers(){
-      return [...this.peers]; // important to derefernce the array here as the arrays in JS are retruned by referece so derefrencein and returng the array.
+    this.http
+      .get<{ peers: Peer[] }>(
+        "http://localhost:3000/api/users"
+      ).subscribe(postData => {
+        this.peers = postData.peers;
+        this.peerUpdated.next([...this.peers])
+      }); 
+      
+      
+    //return [...this.peers]; // important to derefernce the array here as the arrays in JS are retruned by referece so derefrencein and returng the array.
   }
 
   getpeerUpdatedListener(){

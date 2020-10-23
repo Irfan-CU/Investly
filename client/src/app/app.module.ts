@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
+import { HttpClientModule} from '@angular/common/http'
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,9 +25,7 @@ import { UserListComponent } from './user-list/user-list.component';
     AppComponent,
     HomeComponent,
     UserComponent,
-    
     HeaderComponent,
-    
     UserListComponent,
   ],
   imports: [
@@ -38,7 +37,8 @@ import { UserListComponent } from './user-list/user-list.component';
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

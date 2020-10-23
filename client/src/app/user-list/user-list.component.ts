@@ -19,7 +19,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
    
-  this.peers=this.peerService.getPeers();
+  this.peerService.getPeers();
    this.peersSub = this.peerService.getpeerUpdatedListener().subscribe((peers:Peer[]) =>{
      this.peers = peers;
    });
