@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Peer } from './user/user.model';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +7,5 @@ import { Peer } from './user/user.model';
 })
 export class AppComponent {
   title = 'Investly';
-  
-  peers:Peer[]=[]
-  
-  onPeerCreated(peer)
-  {
-  this.peers.push(peer);
-  
-  alert(peer.firstName+peer.lastName+peer.relation+peer.amount);
-  }
+
 }
