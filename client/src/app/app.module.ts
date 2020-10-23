@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './header/header.component';
+import {UserService} from './user.service';
 
 
 
@@ -36,7 +37,7 @@ import { HeaderComponent } from './header/header.component';
     MatToolbarModule,
     MatSelectModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
