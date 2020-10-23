@@ -10,8 +10,14 @@ var app = express();
 
 const rtsIndex = require('./routers/index.router');
 
-app.use(bodyParser.json());
-app.use(cors());
-app.use('/user', rtsIndex);
+app.use('/user', (req, res, next) => {
 
-app.listen(process.env.PORT, () => console.log('listening at PORT ' + process.env.PORT));
+});
+
+//app.use(bodyParser.json());
+//app.use(cors());
+//app.use('/user', rtsIndex);
+
+
+//app.listen(process.env.PORT, () => console.log('listening at PORT ' + process.env.PORT));
+module.exports = app;
