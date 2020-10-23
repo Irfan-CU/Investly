@@ -12,5 +12,6 @@ const rtsIndex = require('./routers/index.router');
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use('/api', rtsIndex);
+app.use('/user', rtsIndex);
+
 app.listen(process.env.PORT, () => console.log('listening at PORT ' + process.env.PORT));
