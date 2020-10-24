@@ -17,6 +17,7 @@ import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './header/header.component';
 import {UserService} from './user.service';
 import { UserListComponent } from './user-list/user-list.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 
@@ -27,6 +28,7 @@ import { UserListComponent } from './user-list/user-list.component';
     UserComponent,
     HeaderComponent,
     UserListComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
