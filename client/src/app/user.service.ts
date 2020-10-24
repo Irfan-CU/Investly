@@ -18,8 +18,8 @@ export class UserService {
     this.http
       .get<{ peers: Peer[] }>(
         "http://localhost:3000/api/users"
-      ).subscribe(postData => {
-        this.peers = postData.peers;
+      ).subscribe(peerData => {
+        this.peers = peerData.peers;
         this.peerUpdated.next([...this.peers])
       }); 
       
@@ -33,7 +33,12 @@ export class UserService {
    
   addPeers(Peer){
       const peer: Peer ={firstName:Peer.firstName,lastName:Peer.lastName,relation:Peer.relation,amount:Peer.amount}
+      this.http.post<{message:string}>("http://localhost:3000/api/users",peer).subscribe(peerData => {
+      console.log(peerData.message);
       this.peers.push(peer);
-      this.peerUpdated.next([...this.peers]);
+        this.peerUpdated.next([...this.peers]);
+      });
+      
+      
   }
 }

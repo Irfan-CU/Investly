@@ -6,7 +6,11 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var app = express();
+
 app.use(bodyParser.json());
+app.use(cors());
+
+
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
@@ -39,12 +43,21 @@ app.get("/api/users", (req, res, next) => {
         peers: peers
     });
 });
+app.post("/api/users", (req, res, next) => {
+    const peer = req.body;
+    res.status(201).json({
+        messgae: 'Peer added successfully'
+    })
+    console.log(peer);
+});
+
+
+
 
 //const rtsIndex = require('./routers/index.router');
 
 
-//app.use(bodyParser.json());
-//app.use(cors());
+
 //app.use('/user', rtsIndex);
 
 
