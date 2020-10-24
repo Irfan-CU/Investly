@@ -46,7 +46,7 @@ app.get("/api/users", (req, res, next) => {
 app.post("/api/users", (req, res, next) => {
     const peer = req.body;
     res.status(201).json({
-        messgae: 'Peer added successfully'
+        message: "Peer added successfully"
     })
     console.log(peer);
 });
