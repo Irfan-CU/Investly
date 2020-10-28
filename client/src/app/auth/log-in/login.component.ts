@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
-
 import {Subscription} from 'rxjs';
-import { UserService } from '../user.service';
-import { logIn} from '../user.model';
+
+import { AuthService } from '../auth.service';
+import { AuthData } from '../../auth/auth-data-model';
 
 
 @Component({
@@ -14,9 +13,9 @@ import { logIn} from '../user.model';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public peerService:UserService) { }
+  constructor(public authService:AuthService) { }
 
-
+  logInUser:AuthData;
 
 
   ngOnInit(): void {
@@ -24,11 +23,14 @@ export class LoginComponent implements OnInit {
 
   }
   onSubmit(form:NgForm):void{
-    const logInUser:logIn = {
+    if (form.invalid){
+      return;
+    }
+    const logInUser = {
       email:form.value.email,
       password:form.value.password
     }; 
-    this.peerService.loginPeers(logInUser);
+    this.authService.login(logInUser);
   }
 
 

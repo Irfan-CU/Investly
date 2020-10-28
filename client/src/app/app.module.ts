@@ -18,7 +18,8 @@ import { HeaderComponent } from './header/header.component';
 import {UserService} from './user.service';
 import { UserListComponent } from './user-list/user-list.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/log-in/login.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
 
 
 
@@ -31,6 +32,7 @@ import { LoginComponent } from './login/login.component';
     UserListComponent,
     LandingPageComponent,
     LoginComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,

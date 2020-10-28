@@ -56,11 +56,11 @@ app.get("/api/users", (req, res, next) => {
 
 
 
-const rtsIndex = require('./routers/index.router');
+const rtsUsers = require('./routers/user');
 
 
-app.post('/api/sign-up', rtsIndex);
-app.post('/api/log-in', rtsIndex);
+app.post('/api/sign-up', rtsUsers);
+app.post('/api/log-in', rtsUsers);
 
 // app.post('/api/refresh', rtsIndex);
 
