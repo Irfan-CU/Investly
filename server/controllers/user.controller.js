@@ -30,7 +30,8 @@
   module.exports.login = (req, res, next) => {
       //call for passport authentication
       passport.authenticate('local', (err, user, info) => {
-          console.log(req.body);
-          if (err) { return res.status(400).json(err); } else if (user) { return res.status(200).json({ "token": user.generateJwt() }) } else { return res.status(404).json(info); }
+          if (err) { return res.status(400).json(err); } else if (user) {
+              return res.status(200).json({ "token": user.generateJwt() })
+          } else { return res.status(404).json(info); }
       })(req, res);
   }

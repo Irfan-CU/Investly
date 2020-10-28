@@ -43,10 +43,10 @@ export class UserService {
       
   }
   loginPeers(logInuser){
-    var email = "abcdad@gmail.com";
-    var password="123456";
-    this.http.post<{message:string}>("http://localhost:3000/api/log-in",{logInuser}).subscribe(logindata=>{
-      console.log(logindata.message);
+   const email = logInuser.email;
+   const password = logInuser.password; 
+    this.http.post<{message:string}>("http://localhost:3000/api/log-in",{email,password}).subscribe(logindata=>{
+      //console.log(logindata.message);
     });
   }
 
