@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import{ HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
+import { AuthData } from './auth-data-model';
+
 
 @Injectable({
     providedIn: 'root'
@@ -11,11 +13,9 @@ import { Subject } from 'rxjs';
 constructor(public http:HttpClient){}
   
 login(logInuser){
-    const email = logInuser.email;
-    const password = logInuser.password; 
-     this.http.post<{token:string}>("http://localhost:3000/api/log-in",{email,password}).subscribe(logindata=>{
-     const token =logindata.token; 
-     console.log(token);
+    const authData:AuthData ={email:logInuser.email,password:logInuser.password};
+     this.http.post("http://localhost:3000/api/log-in",authData).subscribe(response=>{
+       console.log(response);
      
      });
    }
