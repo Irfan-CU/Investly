@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Subject} from 'rxjs'
 
 import { Peer } from './user.model';
+import { logIn } from './user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
   private peers: Peer[]=[]; //this will give the reference to array
   private peerUpdated = new Subject<Peer[]>();
-
+  private logInuser:logIn;
 
   getPeers(){
     this.http
@@ -32,8 +33,8 @@ export class UserService {
   }
    
   addPeers(Peer){
-      const peer: Peer ={firstName:Peer.firstName,lastName:Peer.lastName,relation:Peer.relation,amount:Peer.amount}
-      this.http.post<{message:string}>("http://localhost:3000/api/users",peer).subscribe(peerData => {
+      const peer: Peer =Peer;
+      this.http.post<{message:string}>("http://localhost:3000/api/sign-up",peer).subscribe(peerData => {
       console.log(peerData.message);
       this.peers.push(peer);
         this.peerUpdated.next([...this.peers]);
@@ -41,4 +42,12 @@ export class UserService {
       
       
   }
+  loginPeers(logInuser){
+    var email = "abcdad@gmail.com";
+    var password="123456";
+    this.http.post<{message:string}>("http://localhost:3000/api/log-in",{logInuser}).subscribe(logindata=>{
+      console.log(logindata.message);
+    });
+  }
+
 }

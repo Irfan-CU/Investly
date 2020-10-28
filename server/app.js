@@ -1,14 +1,22 @@
-//require("./config/config");
-//require("./models/db");
+//require('./config/config');
+require('./models/db');
+require('./auth/auth');
 
 
-var express = require('express');
-var bodyParser = require('body-parser');
-var cors = require('cors');
+
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+//const cookieParser = require('cookie-parser');
+const passport = require('passport');
+
 var app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
+//app.use(cookieParser);
+app.use(passport.initialize());
+
 
 
 app.use((req, res, next) => {
@@ -43,23 +51,19 @@ app.get("/api/users", (req, res, next) => {
         peers: peers
     });
 });
-app.post("/api/users", (req, res, next) => {
-    const peer = req.body;
-    res.status(201).json({
-        message: "Peer added successfully"
-    })
-    console.log(peer);
-});
 
 
 
 
-//const rtsIndex = require('./routers/index.router');
+
+const rtsIndex = require('./routers/index.router');
 
 
+app.post('/api/sign-up', rtsIndex);
+app.post('/api/log-in', rtsIndex);
 
-//app.use('/user', rtsIndex);
-
+// app.post('/api/refresh', rtsIndex);
 
 //app.listen(process.env.PORT, () => console.log('listening at PORT ' + process.env.PORT));
+
 module.exports = app;

@@ -1,10 +1,14 @@
 {
     "development": {
-        "PORT": 3000,
-        "MONGODB_URI": "mongodb://localhost:27017/InvestlyUsers"
+        "PORT": 5000,
+        "MONGODB_URI": "mongodb://localhost:27017/InvestlyUsers",
+        "JWT_SECRET": "Investlyinovatica45623#1996@0202",
+        "JWT_EXP": "180s"
     },
     "production": {
         "PORT": 80,
-        "MONGODB_URI": "mongodb://xxxxx/DB_Name"
+        "MONGODB_URI": "mongodb://xxxxx/DB_Name",
+        "JWT_SECRET": "Investlyinovatica45623#1996@0202",
+        "JWT_EXP": "180s"
     }
 }

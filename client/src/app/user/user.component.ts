@@ -28,7 +28,9 @@ export class UserComponent implements OnInit {
     {firstName:form.value.firstName,
         lastName:form.value.lastName,
         relation:this.relation,
-        amount:form.value.amount};
+        amount:form.value.amount,
+        email:form.value.email,
+        password:form.value.password};
         this.peerService.addPeers(peer);
         //this.peerget = this.peerService.getPeers();
         //alert(this.peerget[0].firstName+this.peerget[0].lastName+this.peerget[0].relation+this.peerget[0].amount);

@@ -18,6 +18,7 @@ import { HeaderComponent } from './header/header.component';
 import {UserService} from './user.service';
 import { UserListComponent } from './user-list/user-list.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -29,6 +30,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     HeaderComponent,
     UserListComponent,
     LandingPageComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
