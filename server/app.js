@@ -3,7 +3,6 @@ require('./models/db');
 require('./auth/auth');
 
 
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -54,13 +53,16 @@ app.get("/api/users", (req, res, next) => {
 
 
 
-
-
+// routing link
 const rtsUsers = require('./routers/user');
-
-
-app.post('/api/sign-up', rtsUsers);
+const jwtAuth = require('./middleware/check-auth');
+//requests
+app.post('/api/sign-up', (req, res, next) => {
+    console.log(req.headers.authorization.split(" ")[1]);
+});
 app.post('/api/log-in', rtsUsers);
+
+
 
 
 // app.post('/api/refresh', rtsIndex);

@@ -4,14 +4,22 @@ const mongoose = require('mongoose');
 
 var User = mongoose.model('User');
 
-passport.use(new localStrategy({ usernameField: 'email' }, (username, password, done) => {
-    User.findOne({ email: username }, (err, user) => {
-        if (err) { return done(err); } else if (!user) {
+passport.use(new localStrategy({ usernameField: 'email' }, (email, password, done) => {
+    console.log(password);
+    User.findOne({ email: email }, (err, user) => {
+        if (err) {
+            return done(err);
+        }
+        if (!user) {
             return done(null, false, { message: 'Incorrent Email.' });
-        } else if (!user.isValidPassword(password)) {
-            console.log("Incorrent Password.");
+        }
+        if (!user.isValidPassword(password)) {
             return done(null, false, { message: 'Incorrect Password.' });
-        } else { return done(null, user); }
+        } else {
+
+
+            return done(null, user);
+        }
     });
 
 }))

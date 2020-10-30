@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator')
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs")
 
 const jwt = require('jsonwebtoken');
 
@@ -41,11 +41,15 @@ userSchema.plugin(uniqueValidator);
 
 
 userSchema.methods.isValidPassword = function(password) {
-    return compare = bcrypt.compare(password, this.password);
+
+
+    const compare = bcrypt.compareSync(password, this.password);
+    return compare;
 
 }
 
 userSchema.methods.generateJwt = function() {
+    console.log("bew token");
     return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXP })
 }
 

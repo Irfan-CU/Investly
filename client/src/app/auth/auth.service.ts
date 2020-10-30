@@ -9,28 +9,36 @@ import { AuthData } from './auth-data-model';
     providedIn: 'root'
   })
 
-  export class AuthService{
+export class AuthService
+{
 constructor(public http:HttpClient){}
-  
-login(logInuser){
-    const authData:AuthData ={email:logInuser.email,password:logInuser.password};
-     this.http.post("http://localhost:3000/api/log-in",authData).subscribe(response=>{
-       console.log(response);
+
+  private token:string;
+
+    getToken(){
+        return this.token;
+    }
+
+  login(logInuser)
+    {
+      const authData:AuthData ={email:logInuser.email,password:logInuser.password};
+      this.http.post<{token:string}>("http://localhost:3000/api/log-in",authData).subscribe(response=>{
+      const token = response.token;
+      console.log(token);
+      this.token = token;
      
      });
    }
 
-
-   createUser(logInuser){
-    const email = logInuser.email;
-    const password = logInuser.password; 
-     this.http.post<{message:string}>("http://localhost:3000/api/sign-up",{email,password}).subscribe(SignUpdata=>{
-     
-     const token =SignUpdata.message; 
-     console.log(token);
+   createUser(signup)
+   { 
+     this.http.post<{message:string}>("http://localhost:3000/api/sign-up",signup).subscribe(SignUpdata=>{
+     const message =SignUpdata.message; 
+     console.log(message);
      
      });
    }
+
 
 
 

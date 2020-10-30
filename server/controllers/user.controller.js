@@ -7,6 +7,7 @@
   module.exports.signup = (req, res, next) => {
 
       var user = new User();
+      console.log('the signup passowrd is ' + req.body.password);
       bcrypt.hash(req.body.password, 10).then(hash => {
           user.email = req.body.email;
           user.password = hash;
@@ -20,7 +21,7 @@
               })
           .catch(err => {
               res.status(500).json({
-                  error: err
+                  error: "Cannot add the User Email already exists" + err
               });
           });
   }
@@ -46,8 +47,11 @@
       //call for passport authentication
       console.log(req.body);
       passport.authenticate('local', (err, user, info) => {
-          if (err) { return res.status(400).json(err); } else if (user) {
+
+          console.log(user.password + "  " + err);
+          if (err) { return res.status(400).json(err); } else
+          if (user) {
               return res.status(200).json({ "token": user.generateJwt() })
-          } else { return res.status(404).json(info); }
+          } else {; return res.status(404).json(info); }
       })(req, res);
   }
