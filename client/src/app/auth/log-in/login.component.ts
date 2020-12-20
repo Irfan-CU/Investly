@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
       password:form.value.password
     }; 
     this.authService.login(logInUser);
+    form.reset();
   }
 
 

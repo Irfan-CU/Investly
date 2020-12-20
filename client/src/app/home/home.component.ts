@@ -10,7 +10,7 @@ declare const appStart:any;
 export class HomeComponent implements OnInit {
 
   constructor() { }
-
+  
   ngOnInit(): void {
     appStart()
   }

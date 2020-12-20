@@ -57,16 +57,52 @@ app.get("/api/users", (req, res, next) => {
 const rtsUsers = require('./routers/user');
 const jwtAuth = require('./middleware/check-auth');
 //requests
+
 app.post('/api/sign-up', (req, res, next) => {
     console.log(req.headers.authorization.split(" ")[1]);
+
 });
+
+
+
+
 app.post('/api/log-in', rtsUsers);
 
+// Set your secret key. Remember to switch to your live secret key in production!
+// See your keys here: https://dashboard.stripe.com/account/apikeys
+const stripe = require('stripe')('sk_test_51HiphzH5pKkmSLj54sEpIZhCyANPVkLTkbHdG3aitqSfJhXS5aYnxFBeYTnJSJ27MiuaaB5CXUPfZqZDLXFmiMLS00F59qfjhH');
+
+
+
+//app.post('/api/sign-up', paymentIntent)
+
+// stripe Call for the Payment 
+// async function paymentIntent(req, res, next) {
+
+//     const payment = await stripe.paymentIntents.create({
+//         amount: 1000,
+//         currency: 'cad',
+//         payment_method_types: ['card'],
+//         receipt_email: 'jenny.rosen@example.com',
+//     });
+
+
+//     const payment1 = await stripe.paymentIntents.create({
+//         amount: 1000,
+//         currency: 'cad',
+//         payment_method_types: ['card'],
+//         receipt_email: 'adsad.rosen@example.com',
+//     });
+
+//     console.log(payment, payment1);
+
+
+// };
 
 
 
 // app.post('/api/refresh', rtsIndex);
 
-//app.listen(process.env.PORT, () => console.log('listening at PORT ' + process.env.PORT));
+app.listen(process.env.PORT, () => console.log('listening at PORT ' + process.env.PORT));
 
 module.exports = app;

@@ -45,13 +45,21 @@
 
   module.exports.login = (req, res, next) => {
       //call for passport authentication
-      console.log(req.body);
-      passport.authenticate('local', (err, user, info) => {
 
-          console.log(user.password + "  " + err);
-          if (err) { return res.status(400).json(err); } else
-          if (user) {
-              return res.status(200).json({ "token": user.generateJwt() })
-          } else {; return res.status(404).json(info); }
-      })(req, res);
+      User.findOne({ email: req.email }, function(err, user) {
+          if (err) {
+              return done(err);
+          }
+
+          return res.status(200).json({ "token": user.generateJwt(), expiresIn: process.env.JWT_EXP })
+      });
+
+      //   passport.authenticate('local', (err, user, info) => {
+
+      //       console.log(info.message + "  " + err);
+      //       if (err) { return res.status(400).json(err); } else
+      //       if (user) {
+      //           return res.status(200).json({ "token": user.generateJwt(), expiresIn: process.env.JWT_EXP })
+      //       } else {; return res.status(404).json(info); }
+      //   })(req, res);
   }

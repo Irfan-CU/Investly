@@ -12,6 +12,8 @@ import { AuthInterceptor } from './auth/auth-interceptor'
 
 
 
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -22,6 +24,8 @@ import { UserListComponent } from './user-list/user-list.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginComponent } from './auth/log-in/login.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { AuthGuard } from './auth/auth-guard';
+
 
 
 
@@ -32,9 +36,10 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
     UserComponent,
     HeaderComponent,
     UserListComponent,
-    LandingPageComponent,
     LoginComponent,
     SignUpComponent,
+    LandingPageComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,7 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
     MatSelectModule,
     HttpClientModule
   ],
-  providers: [UserService,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
+  providers: [UserService,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
