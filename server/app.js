@@ -60,6 +60,17 @@ const jwtAuth = require('./middleware/check-auth');
 
 app.post('/api/sign-up', (req, res, next) => {
     console.log(req.headers.authorization.split(" ")[1]);
+    console.log("Sign-Up requested");
+
+
+
+
+
+
+
+
+
+
 
 });
 
