@@ -7,7 +7,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
-import { HttpClientModule} from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth-interceptor'
+
+
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +21,11 @@ import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './header/header.component';
 import {UserService} from './user.service';
 import { UserListComponent } from './user-list/user-list.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { LoginComponent } from './auth/log-in/login.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { AuthGuard } from './auth/auth-guard';
+
 
 
 
@@ -27,6 +36,10 @@ import { UserListComponent } from './user-list/user-list.component';
     UserComponent,
     HeaderComponent,
     UserListComponent,
+    LoginComponent,
+    SignUpComponent,
+    LandingPageComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -40,7 +53,7 @@ import { UserListComponent } from './user-list/user-list.component';
     MatSelectModule,
     HttpClientModule
   ],
-  providers: [UserService],
+  providers: [UserService,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
